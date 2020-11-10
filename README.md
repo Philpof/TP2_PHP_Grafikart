@@ -9,5 +9,5 @@ Créer un blog avec un système de catégorie
 - Administration des catégories
 - Administration des articles
 
-On utile Altorouter en cersion 1.2.0 : https://packagist.org/packages/altorouter/altorouter
+On utile Altorouter en version 1.2.0 : https://packagist.org/packages/altorouter/altorouter
 
