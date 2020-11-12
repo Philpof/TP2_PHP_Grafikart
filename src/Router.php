@@ -28,10 +28,17 @@ class Router {
         return $this;
     }
 
+    // On créer la methode url qui permet de n'appeler Altorouter que dans cette classe
+    public function url (string $name, array $params = [])
+    {
+        return $this->router->generate($name, $params);
+    }
+
     public function run()
     {
         $match = $this->router->match();
         $view = $match['target'];
+        $router = $this;
         ob_start();
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content=ob_get_clean();
