@@ -5,9 +5,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 $faker = Faker\Factory::create('fr_FR');
 
 // Connexion à la BDD
-$pdo = new PDO('mysql:dbname=tutoblog;host=127.0.0.1', 'root', 'root', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$pdo = Connection::getPDO();
 
 // On vide complètement la BDD
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');

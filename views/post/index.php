@@ -1,33 +1,17 @@
 <?php
 
-use App\Helpers\Text;
+use App\Connection;
+use App\URL;
 use App\Model\Post;
+use App\Helpers\Text;
 
 $title = 'Mon Blog';
 $nbrArtPage = 12;
 
 // Connexion à la BDD
-$pdo = new PDO('mysql:dbname=tutoblog;host=127.0.0.1', 'root', 'root', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$pdo = Connection::getPDO();
 
-$page = $_GET['page'] ?? 1; // On récupère le numéro de la page dans l'url. Si la valeur n'existe pas alors on mettra 1
-
-if (!filter_var($page, FILTER_VALIDATE_INT)) {
-    throw new Exception('Numéro de page invalide');
-}
-
-if ($page ==='1') {
-    header('Location: ' . $router->url('home'));
-    http_response_code(301); // Pour indiquer la redirection permanente vers Home
-    exit();
-}
-
-$currentPage = (int)$page;
-
-if ($currentPage <= 0) {
-    throw new Exception('Numéro de page invalide');
-}
+$currentPage = URL::getPositiveInt('page', 1); // Récupère un entier depuis le paramètre 'page' dans l'url et si la paramètre n'est pas défini alors on met 1
 
 $count = (int)$pdo->query('SELECT COUNT(id) FROM post')->fetch(PDO::FETCH_NUM)[0]; // Requête, fetch sous forme de tableau numérique dans lequel on ne récupère que la 1ère colonne
 $pages = ceil($count / $nbrArtPage);
