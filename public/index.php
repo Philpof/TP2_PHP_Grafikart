@@ -10,7 +10,7 @@ $whoops->register();
 
 $router = new App\Router(dirname(__DIR__) . '/views');
 $router
-    ->get('/', 'post/index', 'poil')
+    ->get('/', 'post/index', 'home')
     ->get('/blog', 'post/index', 'blog')
     ->get('/blog/category', 'category/show', 'category')
     ->run();
