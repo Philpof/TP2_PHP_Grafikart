@@ -3,7 +3,7 @@ require '../vendor/autoload.php';
 
 define('DEBUG_TIME', microtime(true));
 
-// La partie ci-dessous concernant Whoops, sera à commenter lors d ela mise en prod de l'appli
+// La partie ci-dessous concernant Whoops, sera à commenter lors de la mise en prod de l'appli
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
